@@ -1,0 +1,17 @@
+{
+  "name": "phaserproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html -p 1000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.12.5",
+    "phaser": "^3.55.2"
+  },
+  "devDependencies": {},
+  "description": ""
+}
