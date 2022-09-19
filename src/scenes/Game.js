@@ -9,10 +9,10 @@ export default class Game extends Phaser.Scene {
     this.rightScore = 0;
   }
 
-  preload() {}
   create() {
     this.physics.world.setBounds(-100, 0, 1000, 500);
 
+    //creating the ball
     this.ball = this.add.circle(400, 250, 10, 0xffffff, 1);
     this.physics.add.existing(this.ball);
     this.ball.body.setCollideWorldBounds(true, 1, 1);
@@ -22,6 +22,8 @@ export default class Game extends Phaser.Scene {
 
     this.redZone = this.add.rectangle(0, 0, 40, 1000, 0xff0000);
     this.redZone = this.add.rectangle(800, 0, 40, 1000, 0xff0000);
+
+    //creating the paddles
     this.paddleLeft = this.add.rectangle(50, 250, 30, 100, 0xffffff);
     this.physics.add.existing(this.paddleLeft, true);
 
@@ -36,6 +38,7 @@ export default class Game extends Phaser.Scene {
       fontSize: 32,
     };
 
+    //create score text
     this.leftScoreLable = this.add
       .text(380, 50, "0", scoreStyle)
       .setOrigin(0.5, 0.5);
@@ -62,6 +65,7 @@ export default class Game extends Phaser.Scene {
       body.updateFromGameObject();
     }
 
+    //determine how the AI paddle moves
     const diff = this.ball.y - this.paddleRight.y;
 
     let aiSpeed = 3;
@@ -96,15 +100,19 @@ export default class Game extends Phaser.Scene {
     }
   }
 
+  //update scores
   incrementRightScore() {
     this.leftScore += 1;
     this.leftScoreLable.text = this.leftScore;
   }
+
+  //update scores
   incrementLeftScore() {
     this.rightScore += 1;
     this.rightScorLable.text = this.rightScore;
   }
 
+  //reset ball
   resetBall() {
     this.ball.setPosition(400, 200);
     const angle = Phaser.Math.Between(0, 360);
